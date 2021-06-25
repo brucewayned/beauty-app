@@ -7,7 +7,7 @@ import 'search_field.dart';
 
 class HomeHeader extends StatelessWidget {
   const HomeHeader({
-    Key key,
+    required Key key,
   }) : super(key: key);
 
   @override
@@ -18,15 +18,15 @@ class HomeHeader extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SearchField(),
+          SearchField(key: key!,),
           IconBtnWithCounter(
             svgSrc: "assets/icons/Cart Icon.svg",
-            press: () => Navigator.pushNamed(context, CartScreen.routeName),
+            press: () => Navigator.pushNamed(context, CartScreen.routeName), key: key!,
           ),
           IconBtnWithCounter(
             svgSrc: "assets/icons/Bell.svg",
             numOfitem: 3,
-            press: () {},
+            press: () {}, key: key!,
           ),
         ],
       ),

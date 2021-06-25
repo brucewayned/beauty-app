@@ -4,7 +4,7 @@ import '../../../size_config.dart';
 
 class DiscountBanner extends StatelessWidget {
   const DiscountBanner({
-    Key key,
+    required Key key,
   }) : super(key: key);
 
   @override

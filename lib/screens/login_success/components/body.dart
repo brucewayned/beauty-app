@@ -29,7 +29,7 @@ class Body extends StatelessWidget {
             text: "Back to home",
             press: () {
               Navigator.pushNamed(context, HomeScreen.routeName);
-            },
+            }, key: key!,
           ),
         ),
         Spacer(),

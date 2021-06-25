@@ -49,7 +49,7 @@ class ForgotPassForm extends StatefulWidget {
 class _ForgotPassFormState extends State<ForgotPassForm> {
   final _formKey = GlobalKey<FormState>();
   List<String> errors = [];
-  String email;
+  late String email;
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -58,7 +58,7 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
         children: [
           TextFormField(
             keyboardType: TextInputType.emailAddress,
-            onSaved: (newValue) => email = newValue,
+            onSaved: (newValue) => email = newValue!,
             onChanged: (value) {
               if (value.isNotEmpty && errors.contains(kEmailNullError)) {
                 setState(() {
@@ -73,7 +73,7 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
               return null;
             },
             validator: (value) {
-              if (value.isEmpty && !errors.contains(kEmailNullError)) {
+              if (value!.isEmpty && !errors.contains(kEmailNullError)) {
                 setState(() {
                   errors.add(kEmailNullError);
                 });
@@ -91,22 +91,22 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
               // If  you are using latest version of flutter then lable text and hint text shown like this
               // if you r using flutter less then 1.20.* then maybe this is not working properly
               floatingLabelBehavior: FloatingLabelBehavior.always,
-              suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Mail.svg"),
+              suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Mail.svg", key: _formKey,),
             ),
           ),
           SizedBox(height: getProportionateScreenHeight(30)),
-          FormError(errors: errors),
+          FormError(errors: errors, key: _formKey,),
           SizedBox(height: SizeConfig.screenHeight * 0.1),
           DefaultButton(
             text: "Continue",
             press: () {
-              if (_formKey.currentState.validate()) {
+              if (_formKey.currentState!.validate()) {
                 // Do what you want to do
               }
-            },
+            }, key: _formKey,
           ),
           SizedBox(height: SizeConfig.screenHeight * 0.1),
-          NoAccountText(),
+          NoAccountText(key: _formKey,),
         ],
       ),
     );

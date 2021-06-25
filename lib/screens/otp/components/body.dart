@@ -22,7 +22,7 @@ class Body extends StatelessWidget {
               ),
               Text("We sent your code to +1 898 860 ***"),
               buildTimer(),
-              OtpForm(),
+              OtpForm(key: key!,),
               SizedBox(height: SizeConfig.screenHeight * 0.1),
               GestureDetector(
                 onTap: () {
@@ -41,6 +41,7 @@ class Body extends StatelessWidget {
   }
 
   Row buildTimer() {
+    int? _counter; //TODO, might cause issue
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -48,8 +49,8 @@ class Body extends StatelessWidget {
         TweenAnimationBuilder(
           tween: Tween(begin: 30.0, end: 0.0),
           duration: Duration(seconds: 30),
-          builder: (_, value, child) => Text(
-            "00:${value.toInt()}",
+          builder: (_, _counter, child) => Text(
+            "00:$_counter",
             style: TextStyle(color: kPrimaryColor),
           ),
         ),

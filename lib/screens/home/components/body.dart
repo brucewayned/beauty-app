@@ -15,11 +15,11 @@ class Body extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: getProportionateScreenHeight(20)),
-            HomeHeader(),
+            HomeHeader(key: key!,),
             SizedBox(height: getProportionateScreenWidth(10)),
-            DiscountBanner(),
+            DiscountBanner(key: key!,),
             Categories(),
-            SpecialOffers(),
+            SpecialOffers(key: key!,),
             SizedBox(height: getProportionateScreenWidth(30)),
             PopularProducts(),
             SizedBox(height: getProportionateScreenWidth(30)),

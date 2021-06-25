@@ -6,7 +6,7 @@ import '../../../constants.dart';
 
 class OtpForm extends StatefulWidget {
   const OtpForm({
-    Key key,
+    required Key key,
   }) : super(key: key);
 
   @override
@@ -14,13 +14,15 @@ class OtpForm extends StatefulWidget {
 }
 
 class _OtpFormState extends State<OtpForm> {
-  FocusNode pin2FocusNode;
-  FocusNode pin3FocusNode;
-  FocusNode pin4FocusNode;
+  late FocusNode pin2FocusNode;
+  late FocusNode pin3FocusNode;
+  late FocusNode pin4FocusNode;
+  late Key key;
 
   @override
   void initState() {
     super.initState();
+    key = key;
     pin2FocusNode = FocusNode();
     pin3FocusNode = FocusNode();
     pin4FocusNode = FocusNode();
@@ -109,7 +111,7 @@ class _OtpFormState extends State<OtpForm> {
           SizedBox(height: SizeConfig.screenHeight * 0.15),
           DefaultButton(
             text: "Continue",
-            press: () {},
+            press: () {}, key: key,
           )
         ],
       ),

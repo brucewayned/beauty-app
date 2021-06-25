@@ -8,11 +8,14 @@ import '../components/splash_content.dart';
 import '../../../components/default_button.dart';
 
 class Body extends StatefulWidget {
+
   @override
   _BodyState createState() => _BodyState();
 }
 
 class _BodyState extends State<Body> {
+  // Key _key = UniqueKey();
+
   int currentPage = 0;
   List<Map<String, String>> splashData = [
     {
@@ -31,6 +34,9 @@ class _BodyState extends State<Body> {
   ];
   @override
   Widget build(BuildContext context) {
+    Key key1 = UniqueKey();
+    Key key2 = UniqueKey();
+
     return SafeArea(
       child: SizedBox(
         width: double.infinity,
@@ -47,7 +53,7 @@ class _BodyState extends State<Body> {
                 itemCount: splashData.length,
                 itemBuilder: (context, index) => SplashContent(
                   image: splashData[index]["image"],
-                  text: splashData[index]['text'],
+                  text: splashData[index]['text'], key: key1,
                 ),
               ),
             ),
@@ -71,7 +77,7 @@ class _BodyState extends State<Body> {
                       text: "Continue",
                       press: () {
                         Navigator.pushNamed(context, SignInScreen.routeName);
-                      },
+                      }, key: key2,
                     ),
                     Spacer(),
                   ],
@@ -84,7 +90,7 @@ class _BodyState extends State<Body> {
     );
   }
 
-  AnimatedContainer buildDot({int index}) {
+  AnimatedContainer buildDot({required int index}) {
     return AnimatedContainer(
       duration: kAnimationDuration,
       margin: EdgeInsets.only(right: 5),

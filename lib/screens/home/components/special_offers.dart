@@ -5,7 +5,7 @@ import 'section_title.dart';
 
 class SpecialOffers extends StatelessWidget {
   const SpecialOffers({
-    Key key,
+    required Key key,
   }) : super(key: key);
 
   @override
@@ -17,7 +17,7 @@ class SpecialOffers extends StatelessWidget {
               EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
           child: SectionTitle(
             title: "Special for you",
-            press: () {},
+            press: () {}, key: key!,
           ),
         ),
         SizedBox(height: getProportionateScreenWidth(20)),
@@ -29,13 +29,13 @@ class SpecialOffers extends StatelessWidget {
                 image: "assets/images/Image Banner 2.png",
                 category: "Smartphone",
                 numOfBrands: 18,
-                press: () {},
+                press: () {},key: key!
               ),
               SpecialOfferCard(
                 image: "assets/images/Image Banner 3.png",
                 category: "Fashion",
                 numOfBrands: 24,
-                press: () {},
+                press: () {},key: key!
               ),
               SizedBox(width: getProportionateScreenWidth(20)),
             ],
@@ -48,11 +48,11 @@ class SpecialOffers extends StatelessWidget {
 
 class SpecialOfferCard extends StatelessWidget {
   const SpecialOfferCard({
-    Key key,
-    @required this.category,
-    @required this.image,
-    @required this.numOfBrands,
-    @required this.press,
+    required Key key,
+    required this.category,
+    required this.image,
+    required this.numOfBrands,
+    required this.press,
   }) : super(key: key);
 
   final String category, image;

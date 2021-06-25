@@ -23,7 +23,7 @@ class Categories extends StatelessWidget {
           (index) => CategoryCard(
             icon: categories[index]["icon"],
             text: categories[index]["text"],
-            press: () {},
+            press: () {}, key: key!,
           ),
         ),
       ),
@@ -33,10 +33,10 @@ class Categories extends StatelessWidget {
 
 class CategoryCard extends StatelessWidget {
   const CategoryCard({
-    Key key,
-    @required this.icon,
-    @required this.text,
-    @required this.press,
+    required Key key,
+    required this.icon,
+    required this.text,
+    required this.press,
   }) : super(key: key);
 
   final String icon, text;

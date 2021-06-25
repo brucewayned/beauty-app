@@ -7,7 +7,7 @@ import '../../../size_config.dart';
 
 class CheckoutCard extends StatelessWidget {
   const CheckoutCard({
-    Key key,
+    required Key key,
   }) : super(key: key);
 
   @override
@@ -78,7 +78,7 @@ class CheckoutCard extends StatelessWidget {
                   width: getProportionateScreenWidth(190),
                   child: DefaultButton(
                     text: "Check Out",
-                    press: () {},
+                    press: () {}, key: key!,
                   ),
                 ),
               ],

@@ -6,7 +6,11 @@ import '../../../size_config.dart';
 class CustomAppBar extends PreferredSize {
   final double rating;
 
-  CustomAppBar({@required this.rating});
+  CustomAppBar({
+    required Key key,
+    required Widget? child,
+    required Size preferredSize,
+    required this.rating}) : super(child : child!, preferredSize: preferredSize);
 
   @override
   // AppBar().preferredSize.height provide us the height that appy on our app bar

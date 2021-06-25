@@ -5,7 +5,7 @@ import '../../../size_config.dart';
 
 class SearchField extends StatelessWidget {
   const SearchField({
-    Key key,
+    required Key key,
   }) : super(key: key);
 
   @override

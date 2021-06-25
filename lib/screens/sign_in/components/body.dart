@@ -7,6 +7,11 @@ import 'sign_form.dart';
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Key key1 = UniqueKey();
+    Key key2 = UniqueKey();
+    Key key3 = UniqueKey();
+    Key key4 = UniqueKey();
+
     return SafeArea(
       child: SizedBox(
         width: double.infinity,
@@ -37,20 +42,20 @@ class Body extends StatelessWidget {
                   children: [
                     SocalCard(
                       icon: "assets/icons/google-icon.svg",
-                      press: () {},
+                      press: () {}, key: key1,
                     ),
                     SocalCard(
                       icon: "assets/icons/facebook-2.svg",
-                      press: () {},
+                      press: () {}, key: key2,
                     ),
                     SocalCard(
                       icon: "assets/icons/twitter.svg",
-                      press: () {},
+                      press: () {}, key: key3,
                     ),
                   ],
                 ),
                 SizedBox(height: getProportionateScreenHeight(20)),
-                NoAccountText(),
+                NoAccountText(key: key4,),
               ],
             ),
           ),

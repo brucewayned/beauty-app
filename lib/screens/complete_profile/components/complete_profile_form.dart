@@ -15,19 +15,19 @@ class CompleteProfileForm extends StatefulWidget {
 class _CompleteProfileFormState extends State<CompleteProfileForm> {
   final _formKey = GlobalKey<FormState>();
   final List<String> errors = [];
-  String firstName;
-  String lastName;
-  String phoneNumber;
-  String address;
+  late String firstName;
+  late String lastName;
+  late String phoneNumber;
+  late String address;
 
-  void addError({String error}) {
+  void addError({required String error}) {
     if (!errors.contains(error))
       setState(() {
         errors.add(error);
       });
   }
 
-  void removeError({String error}) {
+  void removeError({required String error}) {
     if (errors.contains(error))
       setState(() {
         errors.remove(error);
@@ -47,15 +47,15 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
           buildPhoneNumberFormField(),
           SizedBox(height: getProportionateScreenHeight(30)),
           buildAddressFormField(),
-          FormError(errors: errors),
+          FormError(errors: errors, key: _formKey,),
           SizedBox(height: getProportionateScreenHeight(40)),
           DefaultButton(
             text: "continue",
             press: () {
-              if (_formKey.currentState.validate()) {
+              if (_formKey.currentState!.validate()) {
                 Navigator.pushNamed(context, OtpScreen.routeName);
               }
-            },
+            }, key: _formKey,
           ),
         ],
       ),
@@ -64,7 +64,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
 
   TextFormField buildAddressFormField() {
     return TextFormField(
-      onSaved: (newValue) => address = newValue,
+      onSaved: (newValue) => address = newValue!,
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kAddressNullError);
@@ -72,7 +72,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
         return null;
       },
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           addError(error: kAddressNullError);
           return "";
         }
@@ -85,7 +85,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
         // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon:
-            CustomSurffixIcon(svgIcon: "assets/icons/Location point.svg"),
+            CustomSurffixIcon(svgIcon: "assets/icons/Location point.svg", key: _formKey,),
       ),
     );
   }
@@ -93,7 +93,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
   TextFormField buildPhoneNumberFormField() {
     return TextFormField(
       keyboardType: TextInputType.phone,
-      onSaved: (newValue) => phoneNumber = newValue,
+      onSaved: (newValue) => phoneNumber = newValue!,
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kPhoneNumberNullError);
@@ -101,7 +101,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
         return null;
       },
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           addError(error: kPhoneNumberNullError);
           return "";
         }
@@ -113,28 +113,28 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
         // If  you are using latest version of flutter then lable text and hint text shown like this
         // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Phone.svg"),
+        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Phone.svg", key: _formKey,),
       ),
     );
   }
 
   TextFormField buildLastNameFormField() {
     return TextFormField(
-      onSaved: (newValue) => lastName = newValue,
+      onSaved: (newValue) => lastName = newValue!,
       decoration: InputDecoration(
         labelText: "Last Name",
         hintText: "Enter your last name",
         // If  you are using latest version of flutter then lable text and hint text shown like this
         // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/User.svg"),
+        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/User.svg", key: _formKey,),
       ),
     );
   }
 
   TextFormField buildFirstNameFormField() {
     return TextFormField(
-      onSaved: (newValue) => firstName = newValue,
+      onSaved: (newValue) => firstName = newValue!,
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kNamelNullError);
@@ -142,7 +142,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
         return null;
       },
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           addError(error: kNamelNullError);
           return "";
         }
@@ -154,7 +154,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
         // If  you are using latest version of flutter then lable text and hint text shown like this
         // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/User.svg"),
+        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/User.svg", key: _formKey,),
       ),
     );
   }

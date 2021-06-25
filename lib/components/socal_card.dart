@@ -5,9 +5,9 @@ import '../size_config.dart';
 
 class SocalCard extends StatelessWidget {
   const SocalCard({
-    Key key,
-    this.icon,
-    this.press,
+    required Key key,
+    required this.icon,
+    required this.press,
   }) : super(key: key);
 
   final String icon;
@@ -16,7 +16,7 @@ class SocalCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: press,
+      onTap: (){},
       child: Container(
         margin:
             EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(10)),

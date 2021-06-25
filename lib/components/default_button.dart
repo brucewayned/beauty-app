@@ -5,9 +5,9 @@ import '../size_config.dart';
 
 class DefaultButton extends StatelessWidget {
   const DefaultButton({
-    Key key,
-    this.text,
-    this.press,
+    required Key? key,
+    required this.text,
+    required this.press,
   }) : super(key: key);
   final String text;
   final Function press;
@@ -20,7 +20,7 @@ class DefaultButton extends StatelessWidget {
       child: FlatButton(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         color: kPrimaryColor,
-        onPressed: press,
+        onPressed: (){this.press();},
         child: Text(
           text,
           style: TextStyle(

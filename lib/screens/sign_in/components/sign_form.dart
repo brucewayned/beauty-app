@@ -16,19 +16,19 @@ class SignForm extends StatefulWidget {
 
 class _SignFormState extends State<SignForm> {
   final _formKey = GlobalKey<FormState>();
-  String email;
-  String password;
+  late String email;
+  late String password;
   bool remember = false;
   final List<String> errors = [];
 
-  void addError({String error}) {
+  void addError({required String error}) {
     if (!errors.contains(error))
       setState(() {
         errors.add(error);
       });
   }
 
-  void removeError({String error}) {
+  void removeError({required String error}) {
     if (errors.contains(error))
       setState(() {
         errors.remove(error);
@@ -37,8 +37,10 @@ class _SignFormState extends State<SignForm> {
 
   @override
   Widget build(BuildContext context) {
+    Key key1 = UniqueKey();
+    Key key2 = UniqueKey();
+
     return Form(
-      key: _formKey,
       child: Column(
         children: [
           buildEmailFormField(),
@@ -52,7 +54,7 @@ class _SignFormState extends State<SignForm> {
                 activeColor: kPrimaryColor,
                 onChanged: (value) {
                   setState(() {
-                    remember = value;
+                    remember = value!;
                   });
                 },
               ),
@@ -68,18 +70,18 @@ class _SignFormState extends State<SignForm> {
               )
             ],
           ),
-          FormError(errors: errors),
+          FormError(errors: errors, key: key1,),
           SizedBox(height: getProportionateScreenHeight(20)),
           DefaultButton(
             text: "Continue",
             press: () {
-              if (_formKey.currentState.validate()) {
-                _formKey.currentState.save();
+              if (_formKey.currentState!.validate()) {
+                _formKey.currentState!.save();
                 // if all are valid then go to success screen
                 KeyboardUtil.hideKeyboard(context);
                 Navigator.pushNamed(context, LoginSuccessScreen.routeName);
               }
-            },
+            }, key: key2,
           ),
         ],
       ),
@@ -87,9 +89,11 @@ class _SignFormState extends State<SignForm> {
   }
 
   TextFormField buildPasswordFormField() {
+    Key key3 = UniqueKey();
+
     return TextFormField(
       obscureText: true,
-      onSaved: (newValue) => password = newValue,
+      onSaved: (newValue) => password = newValue!,
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kPassNullError);
@@ -99,7 +103,7 @@ class _SignFormState extends State<SignForm> {
         return null;
       },
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           addError(error: kPassNullError);
           return "";
         } else if (value.length < 8) {
@@ -114,15 +118,17 @@ class _SignFormState extends State<SignForm> {
         // If  you are using latest version of flutter then lable text and hint text shown like this
         // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Lock.svg"),
+        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Lock.svg", key: key3,),
       ),
     );
   }
 
   TextFormField buildEmailFormField() {
+    Key key4 = UniqueKey();
+
     return TextFormField(
       keyboardType: TextInputType.emailAddress,
-      onSaved: (newValue) => email = newValue,
+      onSaved: (newValue) => email = newValue!,
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kEmailNullError);
@@ -132,7 +138,7 @@ class _SignFormState extends State<SignForm> {
         return null;
       },
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           addError(error: kEmailNullError);
           return "";
         } else if (!emailValidatorRegExp.hasMatch(value)) {
@@ -147,7 +153,7 @@ class _SignFormState extends State<SignForm> {
         // If  you are using latest version of flutter then lable text and hint text shown like this
         // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Mail.svg"),
+        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Mail.svg", key: key4,),
       ),
     );
   }

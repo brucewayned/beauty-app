@@ -15,20 +15,20 @@ class SignUpForm extends StatefulWidget {
 
 class _SignUpFormState extends State<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
-  String email;
-  String password;
-  String conform_password;
+  late String email;
+  late String password;
+  late String conform_password;
   bool remember = false;
   final List<String> errors = [];
 
-  void addError({String error}) {
+  void addError({required String error}) {
     if (!errors.contains(error))
       setState(() {
         errors.add(error);
       });
   }
 
-  void removeError({String error}) {
+  void removeError({required String error}) {
     if (errors.contains(error))
       setState(() {
         errors.remove(error);
@@ -46,17 +46,17 @@ class _SignUpFormState extends State<SignUpForm> {
           buildPasswordFormField(),
           SizedBox(height: getProportionateScreenHeight(30)),
           buildConformPassFormField(),
-          FormError(errors: errors),
+          FormError(errors: errors, key: _formKey,),
           SizedBox(height: getProportionateScreenHeight(40)),
           DefaultButton(
             text: "Continue",
             press: () {
-              if (_formKey.currentState.validate()) {
-                _formKey.currentState.save();
+              if (_formKey.currentState!.validate()) {
+                _formKey.currentState!.save();
                 // if all are valid then go to success screen
                 Navigator.pushNamed(context, CompleteProfileScreen.routeName);
               }
-            },
+            }, key: _formKey,
           ),
         ],
       ),
@@ -66,7 +66,7 @@ class _SignUpFormState extends State<SignUpForm> {
   TextFormField buildConformPassFormField() {
     return TextFormField(
       obscureText: true,
-      onSaved: (newValue) => conform_password = newValue,
+      onSaved: (newValue) => conform_password = newValue!,
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kPassNullError);
@@ -76,7 +76,7 @@ class _SignUpFormState extends State<SignUpForm> {
         conform_password = value;
       },
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           addError(error: kPassNullError);
           return "";
         } else if ((password != value)) {
@@ -91,7 +91,7 @@ class _SignUpFormState extends State<SignUpForm> {
         // If  you are using latest version of flutter then lable text and hint text shown like this
         // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Lock.svg"),
+        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Lock.svg", key: _formKey,),
       ),
     );
   }
@@ -99,7 +99,7 @@ class _SignUpFormState extends State<SignUpForm> {
   TextFormField buildPasswordFormField() {
     return TextFormField(
       obscureText: true,
-      onSaved: (newValue) => password = newValue,
+      onSaved: (newValue) => password = newValue!,
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kPassNullError);
@@ -109,7 +109,7 @@ class _SignUpFormState extends State<SignUpForm> {
         password = value;
       },
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           addError(error: kPassNullError);
           return "";
         } else if (value.length < 8) {
@@ -124,7 +124,7 @@ class _SignUpFormState extends State<SignUpForm> {
         // If  you are using latest version of flutter then lable text and hint text shown like this
         // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Lock.svg"),
+        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Lock.svg", key: _formKey,),
       ),
     );
   }
@@ -132,7 +132,7 @@ class _SignUpFormState extends State<SignUpForm> {
   TextFormField buildEmailFormField() {
     return TextFormField(
       keyboardType: TextInputType.emailAddress,
-      onSaved: (newValue) => email = newValue,
+      onSaved: (newValue) => email = newValue!,
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kEmailNullError);
@@ -142,7 +142,7 @@ class _SignUpFormState extends State<SignUpForm> {
         return null;
       },
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           addError(error: kEmailNullError);
           return "";
         } else if (!emailValidatorRegExp.hasMatch(value)) {
@@ -157,7 +157,7 @@ class _SignUpFormState extends State<SignUpForm> {
         // If  you are using latest version of flutter then lable text and hint text shown like this
         // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Mail.svg"),
+        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Mail.svg", key: _formKey,),
       ),
     );
   }

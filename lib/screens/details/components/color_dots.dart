@@ -7,8 +7,8 @@ import '../../../size_config.dart';
 
 class ColorDots extends StatelessWidget {
   const ColorDots({
-    Key key,
-    @required this.product,
+    required Key key,
+    required this.product,
   }) : super(key: key);
 
   final Product product;
@@ -26,19 +26,19 @@ class ColorDots extends StatelessWidget {
             product.colors.length,
             (index) => ColorDot(
               color: product.colors[index],
-              isSelected: index == selectedColor,
+              isSelected: index == selectedColor, key: key!,
             ),
           ),
           Spacer(),
           RoundedIconBtn(
             icon: Icons.remove,
-            press: () {},
+            press: () {}, key: key!,
           ),
           SizedBox(width: getProportionateScreenWidth(20)),
           RoundedIconBtn(
             icon: Icons.add,
             showShadow: true,
-            press: () {},
+            press: () {}, key: key!
           ),
         ],
       ),
@@ -48,8 +48,8 @@ class ColorDots extends StatelessWidget {
 
 class ColorDot extends StatelessWidget {
   const ColorDot({
-    Key key,
-    @required this.color,
+    required Key key,
+    required this.color,
     this.isSelected = false,
   }) : super(key: key);
 

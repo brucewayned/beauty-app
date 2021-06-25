@@ -11,28 +11,31 @@ import 'product_images.dart';
 class Body extends StatelessWidget {
   final Product product;
 
-  const Body({Key key, @required this.product}) : super(key: key);
+  const Body({required Key key, required this.product}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        ProductImages(product: product),
+        ProductImages(product: product, key: key!,),
         TopRoundedContainer(
           color: Colors.white,
+          key: key!,
           child: Column(
             children: [
               ProductDescription(
                 product: product,
-                pressOnSeeMore: () {},
+                pressOnSeeMore: () {}, key: key!,
               ),
               TopRoundedContainer(
                 color: Color(0xFFF6F7F9),
+                key: key!,
                 child: Column(
                   children: [
-                    ColorDots(product: product),
+                    ColorDots(product: product, key: key!,),
                     TopRoundedContainer(
                       color: Colors.white,
+                      key: key!,
                       child: Padding(
                         padding: EdgeInsets.only(
                           left: SizeConfig.screenWidth * 0.15,
@@ -42,7 +45,7 @@ class Body extends StatelessWidget {
                         ),
                         child: DefaultButton(
                           text: "Add To Cart",
-                          press: () {},
+                          press: () {}, key: key!,
                         ),
                       ),
                     ),
