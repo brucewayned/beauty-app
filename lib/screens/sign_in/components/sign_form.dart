@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/components/custom_surfix_icon.dart';
-import 'package:shop_app/components/form_error.dart';
-import 'package:shop_app/helper/keyboard.dart';
-import 'package:shop_app/screens/forgot_password/forgot_password_screen.dart';
-import 'package:shop_app/screens/login_success/login_success_screen.dart';
+import 'package:flutter_progress_hud/flutter_progress_hud.dart';
+import 'package:beautystall/components/custom_surfix_icon.dart';
+import 'package:beautystall/components/form_error.dart';
+import 'package:beautystall/controller/LoginController.dart';
+import 'package:beautystall/helper/keyboard.dart';
+import 'package:beautystall/screens/forgot_password/forgot_password_screen.dart';
+import 'package:beautystall/screens/login_success/login_success_screen.dart';
 
 import '../../../components/default_button.dart';
 import '../../../constants.dart';
@@ -39,53 +41,72 @@ class _SignFormState extends State<SignForm> {
   Widget build(BuildContext context) {
     Key key1 = UniqueKey();
     Key key2 = UniqueKey();
+    LoginController loginController;
+    Function goToPageFunc = goToSuccessPage;
+    Function showErrorFunc;
 
     return Form(
-      child: Column(
-        children: [
-          buildEmailFormField(),
-          SizedBox(height: getProportionateScreenHeight(30)),
-          buildPasswordFormField(),
-          SizedBox(height: getProportionateScreenHeight(30)),
-          Row(
-            children: [
-              Checkbox(
-                value: remember,
-                activeColor: kPrimaryColor,
-                onChanged: (value) {
-                  setState(() {
-                    remember = value!;
-                  });
-                },
-              ),
-              Text("Remember me"),
-              Spacer(),
-              GestureDetector(
-                onTap: () => Navigator.pushNamed(
-                    context, ForgotPasswordScreen.routeName),
-                child: Text(
-                  "Forgot Password",
-                  style: TextStyle(decoration: TextDecoration.underline),
+      key: _formKey,
+        child: ProgressHUD(
+          child: Builder(
+            builder: (BuildContext  _context) {
+              loginController = new LoginController(_context);
+              return Center(
+                child: Column(
+                  children: [
+                    buildEmailFormField(),
+                    SizedBox(height: getProportionateScreenHeight(30)),
+                    buildPasswordFormField(),
+                    SizedBox(height: getProportionateScreenHeight(30)),
+                    Row(
+                      children: [
+                        Checkbox(
+                          value: remember,
+                          activeColor: kPrimaryColor,
+                          onChanged: (value) {
+                            setState(() {
+                              remember = value!;
+                            });
+                          },
+                        ),
+                        Text("Remember me"),
+                        Spacer(),
+                        GestureDetector(
+                          onTap: () =>
+                              Navigator.pushNamed(
+                                  context, ForgotPasswordScreen.routeName),
+                          child: Text(
+                            "Forgot Password",
+                            style: TextStyle(
+                                decoration: TextDecoration.underline),
+                          ),
+                        )
+                      ],
+                    ),
+                    FormError(errors: errors, key: key1,),
+                    SizedBox(height: getProportionateScreenHeight(20)),
+                    DefaultButton(
+                      text: "Continue",
+                      press: () {
+                        if (_formKey.currentState!.validate()) {
+                          _formKey.currentState!.save();
+                          // if all are valid then go to success screen
+                          KeyboardUtil.hideKeyboard(context);
+                          loginController.doLogin(email, password, goToSuccessPage);
+                        }
+                      }, key: key2,
+                    ),
+                  ],
                 ),
-              )
-            ],
-          ),
-          FormError(errors: errors, key: key1,),
-          SizedBox(height: getProportionateScreenHeight(20)),
-          DefaultButton(
-            text: "Continue",
-            press: () {
-              if (_formKey.currentState!.validate()) {
-                _formKey.currentState!.save();
-                // if all are valid then go to success screen
-                KeyboardUtil.hideKeyboard(context);
-                Navigator.pushNamed(context, LoginSuccessScreen.routeName);
-              }
-            }, key: key2,
-          ),
-        ],
-      ),
+              );
+            }
+          )
+        )
     );
+  }
+
+  void goToSuccessPage(){
+    Navigator.pushNamed(context, LoginSuccessScreen.routeName);
   }
 
   TextFormField buildPasswordFormField() {
@@ -124,7 +145,7 @@ class _SignFormState extends State<SignForm> {
   }
 
   TextFormField buildEmailFormField() {
-    Key key4 = UniqueKey();
+    Key key4 = new UniqueKey();
 
     return TextFormField(
       keyboardType: TextInputType.emailAddress,

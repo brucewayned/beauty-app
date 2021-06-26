@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/components/socal_card.dart';
-import 'package:shop_app/constants.dart';
-import 'package:shop_app/size_config.dart';
+import 'package:beautystall/components/socal_card.dart';
+import 'package:beautystall/constants.dart';
+import 'package:beautystall/size_config.dart';
 
 import 'sign_up_form.dart';
 

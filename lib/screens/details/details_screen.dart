@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/size_config.dart';
+import 'package:beautystall/size_config.dart';
 
 import '../../models/Product.dart';
 import 'components/body.dart';

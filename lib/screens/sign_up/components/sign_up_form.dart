@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/components/custom_surfix_icon.dart';
-import 'package:shop_app/components/default_button.dart';
-import 'package:shop_app/components/form_error.dart';
-import 'package:shop_app/screens/complete_profile/complete_profile_screen.dart';
+import 'package:beautystall/components/custom_surfix_icon.dart';
+import 'package:beautystall/components/default_button.dart';
+import 'package:beautystall/components/form_error.dart';
+import 'package:beautystall/screens/complete_profile/complete_profile_screen.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';

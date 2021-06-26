@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/constants.dart';
-import 'package:shop_app/screens/sign_in/sign_in_screen.dart';
-import 'package:shop_app/size_config.dart';
+import 'package:beautystall/constants.dart';
+import 'package:beautystall/screens/sign_in/sign_in_screen.dart';
+import 'package:beautystall/size_config.dart';
 
 // This is the best practice
 import '../components/splash_content.dart';
@@ -19,7 +19,7 @@ class _BodyState extends State<Body> {
   int currentPage = 0;
   List<Map<String, String>> splashData = [
     {
-      "text": "Welcome to Tokoto, Let’s shop!",
+      "text": "Welcome to BeautyStall, Let’s shop!",
       "image": "assets/images/splash_1.png"
     },
     {
