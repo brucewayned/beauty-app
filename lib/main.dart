@@ -1,7 +1,6 @@
+import 'package:beautystall/screens/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:beautystall/routes.dart';
-import 'package:beautystall/screens/profile/profile_screen.dart';
-import 'package:beautystall/screens/splash/splash_screen.dart';
 import 'package:beautystall/theme.dart';
 
 void main() {
@@ -9,7 +8,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

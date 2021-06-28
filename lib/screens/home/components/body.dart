@@ -1,3 +1,4 @@
+import 'package:beautystall/screens/home/components/new_arrivals.dart';
 import 'package:flutter/material.dart';
 
 import '../../../size_config.dart';
@@ -19,7 +20,8 @@ class Body extends StatelessWidget {
             SizedBox(height: getProportionateScreenWidth(10)),
             DiscountBanner(key: UniqueKey(),),
             Categories(),
-            SpecialOffers(key: UniqueKey(),),
+            // SpecialOffers(key: UniqueKey(),),
+            NewArrivals(),
             SizedBox(height: getProportionateScreenWidth(30)),
             PopularProducts(),
             SizedBox(height: getProportionateScreenWidth(30)),

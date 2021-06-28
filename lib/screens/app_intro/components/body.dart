@@ -4,7 +4,7 @@ import 'package:beautystall/screens/sign_in/sign_in_screen.dart';
 import 'package:beautystall/size_config.dart';
 
 // This is the best practice
-import '../components/splash_content.dart';
+import '../components/app_intro.dart';
 import '../../../components/default_button.dart';
 
 class Body extends StatefulWidget {
@@ -51,7 +51,7 @@ class _BodyState extends State<Body> {
                   });
                 },
                 itemCount: splashData.length,
-                itemBuilder: (context, index) => SplashContent(
+                itemBuilder: (context, index) => AppIntro(
                   image: splashData[index]["image"],
                   text: splashData[index]['text'], key: key1,
                 ),

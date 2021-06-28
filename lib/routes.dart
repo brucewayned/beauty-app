@@ -1,3 +1,4 @@
+import 'package:beautystall/screens/splash_screen/splash_screen.dart';
 import 'package:flutter/widgets.dart';
 import 'package:beautystall/screens/cart/cart_screen.dart';
 import 'package:beautystall/screens/complete_profile/complete_profile_screen.dart';
@@ -8,14 +9,14 @@ import 'package:beautystall/screens/login_success/login_success_screen.dart';
 import 'package:beautystall/screens/otp/otp_screen.dart';
 import 'package:beautystall/screens/profile/profile_screen.dart';
 import 'package:beautystall/screens/sign_in/sign_in_screen.dart';
-import 'package:beautystall/screens/splash/splash_screen.dart';
+import 'package:beautystall/screens/app_intro/app_intro.dart';
 
 import 'screens/sign_up/sign_up_screen.dart';
 
 // We use name route
 // All our routes will be available here
 final Map<String, WidgetBuilder> routes = {
-  SplashScreen.routeName: (context) => SplashScreen(),
+  AppIntro.routeName: (context) => AppIntro(),
   SignInScreen.routeName: (context) => SignInScreen(),
   ForgotPasswordScreen.routeName: (context) => ForgotPasswordScreen(),
   LoginSuccessScreen.routeName: (context) => LoginSuccessScreen(),
@@ -26,4 +27,5 @@ final Map<String, WidgetBuilder> routes = {
   DetailsScreen.routeName: (context) => DetailsScreen(),
   CartScreen.routeName: (context) => CartScreen(),
   ProfileScreen.routeName: (context) => ProfileScreen(),
+  SplashScreen.routeName: (context) => SplashScreen()
 };

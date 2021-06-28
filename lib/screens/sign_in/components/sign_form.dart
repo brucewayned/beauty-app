@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_progress_hud/flutter_progress_hud.dart';
 import 'package:beautystall/components/custom_surfix_icon.dart';
 import 'package:beautystall/components/form_error.dart';
-import 'package:beautystall/controller/LoginController.dart';
+import 'package:beautystall/service/LoginService.dart';
 import 'package:beautystall/helper/keyboard.dart';
 import 'package:beautystall/screens/forgot_password/forgot_password_screen.dart';
 import 'package:beautystall/screens/login_success/login_success_screen.dart';
@@ -41,16 +41,14 @@ class _SignFormState extends State<SignForm> {
   Widget build(BuildContext context) {
     Key key1 = UniqueKey();
     Key key2 = UniqueKey();
-    LoginController loginController;
-    Function goToPageFunc = goToSuccessPage;
-    Function showErrorFunc;
+    LoginService loginService;
 
     return Form(
       key: _formKey,
         child: ProgressHUD(
           child: Builder(
             builder: (BuildContext  _context) {
-              loginController = new LoginController(_context);
+              loginService = new LoginService(context: _context);
               return Center(
                 child: Column(
                   children: [
@@ -92,7 +90,7 @@ class _SignFormState extends State<SignForm> {
                           _formKey.currentState!.save();
                           // if all are valid then go to success screen
                           KeyboardUtil.hideKeyboard(context);
-                          loginController.doLogin(email, password, goToSuccessPage);
+                          loginService.doLogin(email, password, goToSuccessPage);
                         }
                       }, key: key2,
                     ),
@@ -106,7 +104,7 @@ class _SignFormState extends State<SignForm> {
   }
 
   void goToSuccessPage(){
-    Navigator.pushNamed(context, LoginSuccessScreen.routeName);
+    Navigator.pushNamedAndRemoveUntil(context, LoginSuccessScreen.routeName, (r) => false);
   }
 
   TextFormField buildPasswordFormField() {
