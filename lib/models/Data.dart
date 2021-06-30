@@ -1,5 +1,5 @@
 import 'Price.dart';
-import 'Thumbnail.dart';
+import 'Picture.dart';
 
 class Data {
   Data(
@@ -23,13 +23,13 @@ class Data {
   int stock=0;
   Price price=Price.DefaultInstance();
   bool isNew=false;
-  Thumbnail thumbnail=Thumbnail.DefaultInstance();
-  String rating='';
+  Picture thumbnail=Picture.DefaultInstance();
+  String rating='0.00';
   int reviewCount=0;
 
   static DefaultInstance(){
     return new Data(0, '', 0, '', '', 0, Price.DefaultInstance(),
-        false, Thumbnail.DefaultInstance(), '', 0);
+        false, Picture.DefaultInstance(), '', 0);
   }
 
   Data.fromJson(Map<String, dynamic> json) {
@@ -42,7 +42,7 @@ class Data {
     price = (json['price'] != null ? new Price.fromJson(json['price']) : null)!;
     isNew = json['is_new'];
     thumbnail = (json['thumbnail'] != null
-        ? new Thumbnail.fromJson(json['thumbnail'])
+        ? new Picture.fromJson(json['thumbnail'])
         : null)!;
     rating = json['rating'];
     reviewCount = json['review_count'];

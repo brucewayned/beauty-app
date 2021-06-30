@@ -29,7 +29,7 @@ class GridCard extends StatelessWidget {
           onTap: () => Navigator.pushNamed(
             context,
             DetailsScreen.routeName,
-            // arguments: ProductDetailsArguments(product: product),TODO later
+            arguments: ProductDetailsArguments(data: data),//TODO later
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

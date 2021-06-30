@@ -1,7 +1,10 @@
 import 'dart:developer';
 
+import 'package:beautystall/models/Data.dart';
 import 'package:beautystall/models/Grid.dart';
 import 'package:beautystall/models/GridItem.dart';
+import 'package:beautystall/models/Product2.dart';
+import 'package:beautystall/models/Welcome.dart';
 import 'package:retrofit/http.dart';
 import 'package:dio/dio.dart';
 import 'package:beautystall/models/Login.dart';
@@ -31,5 +34,13 @@ abstract class Api {
   Future<Grid> getNewArrivals(
       @Query('pageSize') int pageSize,
       @Query('page') int page,
+      );
+
+  /**
+   *  https://nuxt.beautyimg.com/api/product?id=7126
+   */
+  @GET('product')
+  Future<Welcome> getProductDetails(
+      @Query('id') int id,
       );
 }

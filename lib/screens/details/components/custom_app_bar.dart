@@ -8,9 +8,9 @@ class CustomAppBar extends PreferredSize {
 
   CustomAppBar({
     required Key key,
-    required Widget? child,
+    required Widget child,
     required Size preferredSize,
-    required this.rating}) : super(child : child!, preferredSize: preferredSize);
+    required this.rating}) : super(child : child, preferredSize: preferredSize);
 
   @override
   // AppBar().preferredSize.height provide us the height that appy on our app bar

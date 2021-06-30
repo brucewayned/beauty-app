@@ -1,7 +1,8 @@
+import 'package:beautystall/components/SpinnerWidget.dart';
 import 'package:beautystall/components/grid_card.dart';
 import 'package:beautystall/models/Data.dart';
 import 'package:beautystall/models/Grid.dart';
-import 'package:beautystall/service/GridService.dart';
+import 'package:beautystall/service/ProductService.dart';
 import 'package:flutter/material.dart';
 import 'package:beautystall/components/product_card.dart';
 import 'package:beautystall/models/Product.dart';
@@ -12,12 +13,12 @@ import 'section_title.dart';
 class NewArrivals extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final GridService gridService = new GridService(context: context);
+    final ProductService productService = new ProductService(context: context);
     final int page = 1;
-    final int pageSize = 3;
+    final int pageSize = 5;
 
     return FutureBuilder(
-      future: gridService.getNewArrivals(pageSize, page),
+      future: productService.getNewArrivals(pageSize, page),
       builder: (BuildContext context, AsyncSnapshot<List<Data>> snapshot) {
         if(snapshot.hasData) {
           return getGridLayout(snapshot.data!);
@@ -55,23 +56,6 @@ class NewArrivals extends StatelessWidget {
           ),
         )
       ],
-    );
-  }
-}
-
-class SpninnerWidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-          alignment: AlignmentDirectional.bottomCenter,
-          child: Column(
-            children: <Widget>[
-              CircularProgressIndicator(),
-            ],
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.center,
-          )),
     );
   }
 }

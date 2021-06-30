@@ -6,9 +6,9 @@ class Price {
       this.endTime
       );
 
-  double normal=0;
-  double special=0;
-  double percent=0;
+  num normal=0;
+  num special=0;
+  num percent=0;
   String endTime='';
 
   static DefaultInstance(){

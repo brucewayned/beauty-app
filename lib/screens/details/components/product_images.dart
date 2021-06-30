@@ -1,5 +1,9 @@
+import 'dart:ui';
+
+import 'package:beautystall/Repository/Api.dart';
+import 'package:beautystall/models/Picture.dart';
 import 'package:flutter/material.dart';
-import 'package:beautystall/models/Product.dart';
+import 'package:beautystall/models/Product2.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';
@@ -10,7 +14,7 @@ class ProductImages extends StatefulWidget {
     required this.product,
   }) : super(key: key);
 
-  final Product product;
+  final Product2 product;
 
   @override
   _ProductImagesState createState() => _ProductImagesState();
@@ -28,7 +32,7 @@ class _ProductImagesState extends State<ProductImages> {
             aspectRatio: 1,
             child: Hero(
               tag: widget.product.id.toString(),
-              child: Image.asset(widget.product.images[selectedImage]),
+              child: Image.network(Api.getFinalImgUrl(widget.product.images[selectedImage].imgUrl)),
             ),
           ),
         ),
@@ -63,7 +67,7 @@ class _ProductImagesState extends State<ProductImages> {
           border: Border.all(
               color: kPrimaryColor.withOpacity(selectedImage == index ? 1 : 0)),
         ),
-        child: Image.asset(widget.product.images[index]),
+        // child: Image.asset(widget.product.images[index]), TODO
       ),
     );
   }

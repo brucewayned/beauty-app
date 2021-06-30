@@ -1,13 +1,13 @@
-class Thumbnail {
+class Picture {
   String imgUrl='';
 
-  Thumbnail({required this.imgUrl});
+  Picture({required this.imgUrl});
 
   static DefaultInstance(){
-    return new Thumbnail(imgUrl: '');
+    return new Picture(imgUrl: '');
   }
 
-  Thumbnail.fromJson(Map<String, dynamic> json) {
+  Picture.fromJson(Map<String, dynamic> json) {
     imgUrl = (json['img_url'] != null ? json['img_url'] : '');
   }
 
