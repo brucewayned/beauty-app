@@ -1,5 +1,6 @@
 import 'package:beautystall/models/Product2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:beautystall/models/Product.dart';
 
@@ -53,9 +54,13 @@ class ProductDescription extends StatelessWidget {
             left: getProportionateScreenWidth(20),
             right: getProportionateScreenWidth(64),
           ),
-          child: Text(
-            product.description,
-            maxLines: 3,
+          // child: Text(
+          //   product.description,
+          //   maxLines: 3,
+          // ),
+          child: Html(
+            data: product.description+product.productDetail,
+            // maxLines: 3,
           ),
         ),
         Padding(
@@ -63,24 +68,24 @@ class ProductDescription extends StatelessWidget {
             horizontal: getProportionateScreenWidth(20),
             vertical: 10,
           ),
-          child: GestureDetector(
-            onTap: () {},
-            child: Row(
-              children: [
-                Text(
-                  "See More Detail",
-                  style: TextStyle(
-                      fontWeight: FontWeight.w600, color: kPrimaryColor),
-                ),
-                SizedBox(width: 5),
-                Icon(
-                  Icons.arrow_forward_ios,
-                  size: 12,
-                  color: kPrimaryColor,
-                ),
-              ],
-            ),
-          ),
+          // child: GestureDetector(
+          //   onTap: () {},
+          //   child: Row(
+          //     children: [
+          //       Text(
+          //         "See More Detail",
+          //         style: TextStyle(
+          //             fontWeight: FontWeight.w600, color: kPrimaryColor),
+          //       ),
+          //       SizedBox(width: 5),
+          //       Icon(
+          //         Icons.arrow_forward_ios,
+          //         size: 12,
+          //         color: kPrimaryColor,
+          //       ),
+          //     ],
+          //   ),
+          // ),
         )
       ],
     );

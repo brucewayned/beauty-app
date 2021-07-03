@@ -11,7 +11,7 @@ class CartScreen extends StatelessWidget {
     return Scaffold(
       appBar: buildAppBar(context),
       body: Body(),
-      bottomNavigationBar: CheckoutCard(key: key!,),
+      bottomNavigationBar: CheckoutCard(key: UniqueKey(),),
     );
   }
 

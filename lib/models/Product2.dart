@@ -14,7 +14,7 @@ class Product2 {
   String name='';
   List<dynamic> breadcrumb=[];
   String description='';
-  dynamic productDetail='';
+  String productDetail='';
   String caution='';
   String direction='';
   String ingredient='';

@@ -43,4 +43,7 @@ abstract class Api {
   Future<Welcome> getProductDetails(
       @Query('id') int id,
       );
+
+  @GET('/auth/wishlist')
+  Future<void>getWishlist();
 }
